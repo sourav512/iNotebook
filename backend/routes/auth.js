@@ -43,10 +43,11 @@ router.post(
 
       const data = {
         user: {
-          id: user.id,
+          id: user.id
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
+      console.log(authToken);
       res.json({ user, authToken });
     } catch (error) {
       console.log(error);
@@ -81,6 +82,7 @@ router.post(
       const data = {
         user: {
           id: user.id,
+          email: user.email
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
@@ -96,13 +98,21 @@ router.post(
 router.post("/getuser",fetchUser,async (req, res) => {
     try {
         const userId = req.user.id;
-      const user = await User.findOne({userId}).select("-password");
+        console.log(req.user);
+      const user = await User.findById(userId).select("-password");
       res.send(user);
+      console.log(user);
     } catch (error) {
       console.log(error);
-      res.json({ msg: "an error occured" });
+      res.json({ msg: "an error occured at get user" });
     }
   }
 );
 
 module.exports = router;
+
+//sourav
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE0YjgzNzE0NzNlOTQwYzUzOThiOTMzIiwiZW1haWwiOiJzb3VyYXZAZ21haWwuY29tIn0sImlhdCI6MTYzMjMzODgyMH0.oeoByVZXuntHAxUPtIoSB5f19H3Yj38YLVsmOCbTqgQ
+
+//akhil
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE0YjgzNzQ0NzNlOTQwYzUzOThiOTM2IiwiZW1haWwiOiJha2hpbEBnbWFpbC5jb20ifSwiaWF0IjoxNjMyMzM4ODYyfQ.IGkRRiCGVoB2wX2ZmfSnnFNXtcpUDAbe8rShzlSxw6w
