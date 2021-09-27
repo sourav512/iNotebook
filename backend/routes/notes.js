@@ -31,7 +31,7 @@ router.post(
       const savedNote = await note.save();
       res.status(200).send({ savedNote, msg: "data saved on db" });
     } catch (err) {
-      res.status(401).send("auth failed at route /createnote");
+      res.status(500).send("internal server error");
     }
   }
 );

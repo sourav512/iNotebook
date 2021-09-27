@@ -13,7 +13,7 @@ const Noteitem = (props) => {
         <p className="card-text">{description}</p>
         <div className="btn-group btn-block" role="group">
     <button className="btn btn-primary" onClick={()=>{deleteNote(props.note._id)}}>Delete</button>
-    <button className="btn btn-primary" onClick={editNote}>Edit</button>
+    <button className="btn btn-primary" onClick={()=>{props.updateNote(props.note)}}>Edit</button>
   </div>
       </div>
       </div>
